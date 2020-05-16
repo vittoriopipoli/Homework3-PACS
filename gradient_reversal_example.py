@@ -1,5 +1,5 @@
 import torch.nn as nn
-from torch.autograd import Function
+from torch.autograd import Function #it represents a functions that works on tensors, i have to specify what is does forward and backward
 
 ''' 
 Very easy template to start for developing your AlexNet with DANN 
@@ -8,12 +8,12 @@ However, the logic is consistent
 '''
 
 
-class ReverseLayerF(Function):
+class ReverseLayerF(Function):  #GradientReversalFn
     # Forwards identity
     # Sends backward reversed gradients
     @staticmethod
     def forward(ctx, x, alpha):
-        ctx.alpha = alpha
+        ctx.alpha = alpha   #this stores the parameter of the network and it is what i have to multiply the gradient by
 
         return x.view_as(x)
 
